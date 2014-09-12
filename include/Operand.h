@@ -6,7 +6,7 @@
 namespace calculator {
     class Operand : public Differentiable {
         public:
-        virtual std::shared_ptr<Differentiable> derivative() const;
+        virtual Differentiable derivative() const;
 
         private:
 

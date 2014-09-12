@@ -52,10 +52,10 @@ namespace calculator {
          * @param operatorChar  The character representation of the operator.
          * @param children      A vector containing the children of the operator.
          */
-        Operator(const OperatorChar opChar, const std::vector<std::shared_ptr<Differentiable>> children);
+        Operator(const OperatorChar opChar, const std::vector<std::Differentiable> children);
 
         /// Operations ///
-        virtual std::shared_ptr<Differentiable> derivative() const;
+        virtual std::Differentiable derivative() const;
 
         private:
 
@@ -80,7 +80,7 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::shared_ptr<Differentiable> sumRule(Differentiable &leftOperand,
+        static std::Differentiable sumRule(Differentiable &leftOperand,
                 Differentiable &rightOperand);
 
         /**
@@ -91,7 +91,7 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::shared_ptr<Differentiable> differenceRule(Differentiable& leftOperand,
+        static std::Differentiable differenceRule(Differentiable& leftOperand,
                 Differentiable& rightOperand);
 
         /**
@@ -102,7 +102,7 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::shared_ptr<Differentiable> productRule(Differentiable& leftOperand,
+        static std::Differentiable productRule(Differentiable& leftOperand,
                 Differentiable& rightOperand);
 
         /**
@@ -113,11 +113,11 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::shared_ptr<Differentiable> quotientRule(Differentiable& numerator,
+        static std::Differentiable quotientRule(Differentiable& numerator,
                 Differentiable& denominator);
 
 
-        const std::vector<std::shared_ptr<Differentiable>> children;
+        const std::vector<std::Differentiable> children;
 
         const OperatorChar opChar;
         const OperatorMetaData metaData;

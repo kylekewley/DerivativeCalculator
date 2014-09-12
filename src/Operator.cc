@@ -24,25 +24,25 @@ map<OperatorChar, OperatorMetaData> Operator::createOperatorMap() {
 }
 
 //// Static Finding Derivatives ////
-shared_ptr<Differentiable> Operator::sumRule(Differentiable &leftOperand,
+Differentiable Operator::sumRule(Differentiable &leftOperand,
         Differentiable &rightOperand) {
 
 
-    vector<shared_ptr<Differentiable>> children;
+    vector<Differentiable> children;
     //(leftOperand.derivative(), rightOperand.derivative());
 
     return Operator(OpAddition, children);
 }
 
-shared_ptr<Differentiable> Operator::differenceRule(Differentiable& leftOperand,
+Differentiable Operator::differenceRule(Differentiable& leftOperand,
         Differentiable& rightOperand) {
 }
 
-shared_ptr<Differentiable> Operator::productRule(Differentiable& leftOperand,
+Differentiable Operator::productRule(Differentiable& leftOperand,
         Differentiable& rightOperand) {
 }
 
-shared_ptr<Differentiable> Operator::quotientRule(Differentiable& numerator,
+Differentiable Operator::quotientRule(Differentiable& numerator,
         Differentiable& denominator) {
 }
 
@@ -50,12 +50,12 @@ shared_ptr<Differentiable> Operator::quotientRule(Differentiable& numerator,
 ////// Constructors //////
 Operator::Operator(): opChar(OpNone) {}
 
-Operator::Operator(const OperatorChar opChar, const vector<shared_ptr<Differentiable>> children):
+Operator::Operator(const OperatorChar opChar, const vector<Differentiable> children):
 children(children), opChar(opChar), metaData(operatorMetaData[opChar]){
 
 }
 ////// Operations ///////
-shared_ptr<Differentiable> Operator::derivative() const {
+Differentiable Operator::derivative() const {
     switch (opChar) {
         case OpAddition:
             break;

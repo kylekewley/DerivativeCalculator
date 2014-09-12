@@ -5,7 +5,7 @@
 using namespace calculator;
 
 
-std::shared_ptr<Differentiable> Differentiable::derivative() const {
+Differentiable Differentiable::derivative() const {
 
-    return std::shared_ptr<Operand>();
+    return Operand();
 }
