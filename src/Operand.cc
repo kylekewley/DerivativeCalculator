@@ -4,6 +4,8 @@
 
 using namespace calculator;
 
+Operand::Operand(int constant) {
+}
 
 Differentiable Differentiable::derivative() const {
 

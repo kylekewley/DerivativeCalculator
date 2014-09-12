@@ -52,10 +52,10 @@ namespace calculator {
          * @param operatorChar  The character representation of the operator.
          * @param children      A vector containing the children of the operator.
          */
-        Operator(const OperatorChar opChar, const std::vector<std::Differentiable> children);
+        Operator(const OperatorChar opChar, const std::vector<Differentiable> children);
 
         /// Operations ///
-        virtual std::Differentiable derivative() const;
+        virtual Differentiable derivative() const;
 
         private:
 
@@ -80,7 +80,7 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::Differentiable sumRule(Differentiable &leftOperand,
+        static Differentiable sumRule(Differentiable &leftOperand,
                 Differentiable &rightOperand);
 
         /**
@@ -91,7 +91,7 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::Differentiable differenceRule(Differentiable& leftOperand,
+        static Differentiable differenceRule(Differentiable& leftOperand,
                 Differentiable& rightOperand);
 
         /**
@@ -102,22 +102,44 @@ namespace calculator {
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::Differentiable productRule(Differentiable& leftOperand,
+        static Differentiable productRule(Differentiable& leftOperand,
                 Differentiable& rightOperand);
 
         /**
-         * Returns the derivative of leftOperand / rightOperand.
+         * Returns the derivative of numerator / denominator.
          *
          * @param   leftOperand The operand on the left side of the operator.
          * @param   rightOperand The Operand on the right side of the operator.
          *
          * @return  A Differentiable object. The underlying class is Operator.
          */
-        static std::Differentiable quotientRule(Differentiable& numerator,
+        static Differentiable quotientRule(Differentiable& numerator,
                 Differentiable& denominator);
 
+        /**
+         * Returns the derivative of term^exponent. Both term and exponent
+         * should have the variable x.
+         *
+         * @param   leftOperand The operand on the left side of the operator.
+         * @param   rightOperand The Operand on the right side of the operator.
+         *
+         * @return  A Differentiable object. The underlying class is Operator.
+         */
+        //static Differentiable powerRule(Differentiable& term,
+        //        Differentiable& exponent);
 
-        const std::vector<std::Differentiable> children;
+        /**
+         * Returns the derivative of term^exponent. Term should contain and x
+         * and exponent should be a constant.
+         *
+         * @param   leftOperand The operand on the left side of the operator.
+         * @param   rightOperand The Operand on the right side of the operator.
+         *
+         * @return  A Differentiable object. The underlying class is Operator.
+         */
+        //static Differentiable powerRule(Differentiable& term,
+        //        Constant& exponent);
+        const std::vector<Differentiable> children;
 
         const OperatorChar opChar;
         const OperatorMetaData metaData;

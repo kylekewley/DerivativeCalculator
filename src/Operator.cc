@@ -27,24 +27,48 @@ map<OperatorChar, OperatorMetaData> Operator::createOperatorMap() {
 Differentiable Operator::sumRule(Differentiable &leftOperand,
         Differentiable &rightOperand) {
 
-
-    vector<Differentiable> children;
-    //(leftOperand.derivative(), rightOperand.derivative());
-
+    auto children = {leftOperand.derivative(), rightOperand.derivative()};
     return Operator(OpAddition, children);
 }
 
 Differentiable Operator::differenceRule(Differentiable& leftOperand,
         Differentiable& rightOperand) {
+
+    auto children = {leftOperand.derivative(), rightOperand.derivative()};
+    return Operator(OpSubtraction, children);
 }
 
 Differentiable Operator::productRule(Differentiable& leftOperand,
         Differentiable& rightOperand) {
+    auto leftdx = leftOperand.derivative();
+    auto rightdx = rightOperand.derivative(); 
+
+    auto leftOperanddx = Operator(OpMultiplication, {leftOperand, rightdx});
+    auto rightOperanddx = Operator(OpMultiplication, {leftdx, rightOperand});
+
+    return Operator(OpAddition, {leftOperanddx, rightOperanddx});
 }
 
 Differentiable Operator::quotientRule(Differentiable& numerator,
         Differentiable& denominator) {
+
+    auto numdx = numerator.derivative();
+    auto dendx = denominator.derivative();
+
+    //Square the denominator for the derivative's denominator
+    auto denominatordx = Operator(OpExponent, {denominator, Operand(2)});
+
+    //Create the two terms for the derivative's numerator
+    auto leftdx = Operator(OpMultiplication, {denominator, numdx});
+    auto rightdx = Operator(OpMultiplication, {numerator, dendx});
+
+    //Combine into the numerator
+    auto numeratordx = Operator(OpSubtraction, {leftdx, rightdx});
+
+    //Return numerator / denominator
+    return Operator(OpDivision, {numeratordx, denominatordx});
 }
+
 
 //// Public Methods ////
 ////// Constructors //////
