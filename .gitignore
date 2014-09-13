@@ -39,5 +39,5 @@ ProtocolBuffers/*.pb.h
 ProtocolBuffers/*.java
 
 .release_time
-
 *.pyc
+session.vim
