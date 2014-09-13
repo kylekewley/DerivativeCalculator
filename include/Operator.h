@@ -5,6 +5,7 @@
 #include <map>
 
 #include "Operand.h"
+#include "Differentiable.h"
 
 namespace calculator {
 
