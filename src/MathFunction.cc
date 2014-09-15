@@ -4,4 +4,5 @@ using namespace calculator;
 
 MathFunction MathFunction::takeDerivative() const {
 
+    return MathFunction();
 }

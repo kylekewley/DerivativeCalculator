@@ -4,10 +4,7 @@
 
 using namespace calculator;
 
-Operand::Operand(int constant) {
-}
-
-Differentiable Differentiable::derivative() const {
+Differentiable Operand::derivative() const {
 
     return Operand();
 }

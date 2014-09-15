@@ -4,14 +4,9 @@
 #include "Differentiable.h"
 
 namespace calculator {
-//    typedef union number {
-//        number(int32_t value): integer(value) {};
-//        number(float value): decimal(value) {};
-//        number(){};
-//        int32_t integer;
-//        float decimal;
-//    }number;
 
+    class Term;
+    class FunctionTerm;
     class Constant : public Differentiable {
         public:
 
@@ -26,6 +21,13 @@ namespace calculator {
         Constant operator-(const Constant &rhs) const;
         Constant operator*(const Constant &rhs) const;
         Constant operator/(const Constant &rhs) const;
+
+        bool operator==(const Constant &rhs) const;
+
+        Differentiable operator+(const Term &rhs) const;
+        Differentiable operator-(const Term &rhs) const;
+        Differentiable operator*(const Term &rhs) const;
+        Differentiable operator/(const Term &rhs) const;
 
         int32_t getDenominator() const;
         double getNumerator() const;

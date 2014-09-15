@@ -1,6 +1,7 @@
 #include "Operator.h"
 
 #include "Operand.h"
+#include "Constant.h"
 
 using namespace calculator;
 using std::shared_ptr;
@@ -56,7 +57,7 @@ Differentiable Operator::quotientRule(Differentiable& numerator,
     auto dendx = denominator.derivative();
 
     //Square the denominator for the derivative's denominator
-    auto denominatordx = Operator(OpExponent, {denominator, Operand(2)});
+    auto denominatordx = Operator(OpExponent, {denominator, Constant(2)});
 
     //Create the two terms for the derivative's numerator
     auto leftdx = Operator(OpMultiplication, {denominator, numdx});
